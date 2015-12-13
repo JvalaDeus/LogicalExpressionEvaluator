@@ -1,11 +1,12 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class LogicalExpression {
 	static String expression;
 	static int numVariables;
-	static String[] varArray = new String[100];
+	static String[] varArray = new String[5];
 
 	public static void main(String[] args) throws IOException {
 		LogicalExpression expression = new LogicalExpression();
@@ -38,18 +39,30 @@ public class LogicalExpression {
 			case " ":
 				System.out.println("Hit space");
 				continue;
+			case "(":
+				System.out.println("Hit (");
+				continue;
+			case ")":
+				System.out.println("Hit )");
+				continue;
 			default:
-				for (int j = 0; j < numVariables; j++) {
-					if (expChar == varArray[i]) {
-						break;
+				if (numVariables == 0) {
+					varArray[numVariables] = expChar;
+					numVariables++;
+				} else {
+					System.out.println("Array" + Arrays.toString(varArray));
+					for (int j = 0; j < numVariables; j++) {
+						if (expChar.equals(varArray[j])) {
+							System.out.println("found a duplicate " + expChar);
+							break;
+						} else {
+							System.out.println("adding variable to array " + expChar);
+							varArray[numVariables] = expChar;
+							numVariables++;
+						}
 					}
 				}
-				varArray[numVariables] = expChar;
-				numVariables++;
 			}
-			System.out.println(ExpLength);
-			System.out.println(numVariables);
-			System.out.println(varArray[numVariables]);
 		}
 	}
 }
