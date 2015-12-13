@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 public class LogicalExpression {
 	static String expression;
@@ -20,7 +19,8 @@ public class LogicalExpression {
 		System.out.println("Type expression in: ");
 		expression = br.readLine();
 	}
-
+	
+	
 	public static void countVariables() {
 		int ExpLength = expression.length();
 		String expChar;
@@ -28,35 +28,26 @@ public class LogicalExpression {
 			expChar = Character.toString(expression.charAt(i));
 			switch (expChar) {
 			case "&":
-				System.out.println("Hit &");
 				continue;
 			case "~":
-				System.out.println("Hit ~");
 				continue;
 			case "|":
-				System.out.println("Hit |");
 				continue;
 			case " ":
-				System.out.println("Hit space");
 				continue;
 			case "(":
-				System.out.println("Hit (");
 				continue;
 			case ")":
-				System.out.println("Hit )");
 				continue;
 			default:
 				if (numVariables == 0) {
 					varArray[numVariables] = expChar;
 					numVariables++;
 				} else {
-					System.out.println("Array" + Arrays.toString(varArray));
 					for (int j = 0; j < numVariables; j++) {
 						if (expChar.equals(varArray[j])) {
-							System.out.println("found a duplicate " + expChar);
 							break;
 						} else {
-							System.out.println("adding variable to array " + expChar);
 							varArray[numVariables] = expChar;
 							numVariables++;
 						}
