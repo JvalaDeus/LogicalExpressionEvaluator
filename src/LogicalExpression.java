@@ -4,7 +4,8 @@ import java.io.InputStreamReader;
 
 public class LogicalExpression {
 	static String expression;
-	static int numVariables = 0;
+	static int numVariables;
+	static String[] varArray = new String[100];
 
 	public static void main(String[] args) throws IOException {
 		LogicalExpression expression = new LogicalExpression();
@@ -38,10 +39,17 @@ public class LogicalExpression {
 				System.out.println("Hit space");
 				continue;
 			default:
+				for (int j = 0; j < numVariables; j++) {
+					if (expChar == varArray[i]) {
+						break;
+					}
+				}
+				varArray[numVariables] = expChar;
 				numVariables++;
 			}
+			System.out.println(ExpLength);
+			System.out.println(numVariables);
+			System.out.println(varArray[numVariables]);
 		}
-		System.out.println(ExpLength);
-		System.out.println(numVariables);
 	}
 }
