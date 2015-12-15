@@ -9,7 +9,7 @@ public class LogicalExpression {
 
 	public static void main(String[] args) throws IOException {
 		LogicalExpression expression = new LogicalExpression();
-		NewVariable newVariable = new NewVariable(null, false);
+		variableValues values = new variableValues(null, false);
 		countVariables();
 	}
 
