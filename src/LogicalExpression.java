@@ -1,31 +1,23 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class LogicalExpression {
-	static String expression;
+	static String firstExpression = "a | b";
+	static String secondExpression = "a & b";
 	static int numVariables;
-	static String[] varArray = new String[5];
+	static String[] varArray = new String[2];
 
 	public static void main(String[] args) throws IOException {
 		LogicalExpression expression = new LogicalExpression();
+		NewVariable newVariable = new NewVariable(null, false);
 		countVariables();
 	}
 
-	public LogicalExpression() throws IOException {
-		System.out.println("For this program, only use a-z. Also, only use parenthesis, and, or, or negate");
-		System.out.println("And is &, or is |, negate is ~, and parenthesis are ().");
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		System.out.println("Type expression in: ");
-		expression = br.readLine();
-	}
-	
-	
 	public static void countVariables() {
-		int ExpLength = expression.length();
+		int ExpLength = firstExpression.length();
 		String expChar;
 		for (int i = 0; i < ExpLength; i++) {
-			expChar = Character.toString(expression.charAt(i));
+			expChar = Character.toString(firstExpression.charAt(i));
 			switch (expChar) {
 			case "&":
 				continue;
@@ -55,5 +47,26 @@ public class LogicalExpression {
 				}
 			}
 		}
+		System.out.println(Arrays.toString(varArray));
+	}
+
+	public static void valid() {
+
+	}
+
+	public static void contingent() {
+
+	}
+
+	public static void satisfiable() {
+
+	}
+
+	public static void entails() {
+
+	}
+
+	public static void equivalent() {
+
 	}
 }
