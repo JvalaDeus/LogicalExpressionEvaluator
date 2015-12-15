@@ -13,6 +13,13 @@ public class LogicalExpression {
 		countVariables();
 	}
 
+	public LogicalExpression() {
+		operations();
+		valid();
+		contingent();
+		satisfiable();
+	}
+
 	public static void countVariables() {
 		int ExpLength = firstExpression.length();
 		String expChar;
@@ -48,6 +55,26 @@ public class LogicalExpression {
 			}
 		}
 		System.out.println(Arrays.toString(varArray));
+	}
+
+	public static void paraenthesis() {
+
+	}
+
+	public static void negate() {
+
+	}
+
+	public static void and() {
+
+	}
+
+	public static void or() {
+
+	}
+
+	public static void operations() {
+
 	}
 
 	public static void valid() {
