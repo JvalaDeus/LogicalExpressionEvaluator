@@ -1,19 +1,19 @@
 import java.io.IOException;
 import java.util.Arrays;
 
-public class LogicalExpression {
+public class logicalExpression {
 	static String firstExpression = "a | b";
 	static String secondExpression = "a & b";
 	static int numVariables;
 	static String[] varArray = new String[2];
-
+	
 	public static void main(String[] args) throws IOException {
-		LogicalExpression expression = new LogicalExpression();
+		logicalExpression expression = new logicalExpression();
 		variableValues values = new variableValues(null, false);
 		countVariables();
 	}
 
-	public LogicalExpression() {
+	public logicalExpression() {
 		operations();
 		valid();
 		contingent();
@@ -40,14 +40,14 @@ public class LogicalExpression {
 				continue;
 			default:
 				if (numVariables == 0) {
-					varArray[numVariables] = expChar;
+					value[numVariables] = expChar;
 					numVariables++;
 				} else {
 					for (int j = 0; j < numVariables; j++) {
 						if (expChar.equals(varArray[j])) {
 							break;
 						} else {
-							varArray[numVariables] = expChar;
+							value[numVariables] = expChar;
 							numVariables++;
 						}
 					}
@@ -55,6 +55,10 @@ public class LogicalExpression {
 			}
 		}
 		System.out.println(Arrays.toString(varArray));
+	}
+
+	public static void truthTable() {
+
 	}
 
 	public static void paraenthesis() {
@@ -74,7 +78,10 @@ public class LogicalExpression {
 	}
 
 	public static void operations() {
-
+		paraenthesis();
+		negate();
+		and();
+		or();
 	}
 
 	public static void valid() {
