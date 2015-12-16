@@ -6,7 +6,7 @@ public class logicalExpression {
 	static String secondExpression = "a & b";
 	static int numVariables;
 	static String[] varArray = new String[2];
-	
+
 	public static void main(String[] args) throws IOException {
 		logicalExpression expression = new logicalExpression();
 		variableValues values = new variableValues(null, false);
