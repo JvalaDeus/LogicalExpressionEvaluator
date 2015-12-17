@@ -8,12 +8,12 @@ public class logicalExpression {
 	static String[] varArray = new String[2];
 
 	public static void main(String[] args) throws IOException {
-		logicalExpression expression = new logicalExpression();
+		// logicalExpression expression = new logicalExpression();
+		truthTable();
 	}
 
 	public logicalExpression() {
 		countVariables();
-		operations();
 		valid();
 		contingent();
 		satisfiable();
@@ -57,45 +57,27 @@ public class logicalExpression {
 	}
 
 	public static void truthTable() {
-		boolean a, b, c;
+		boolean a, b, c, d;
 		a = false;
-		System.out.println("a\tb\tc\t(a && b) && a|| !c");
+		System.out.println("a\tb\tc\td\t(a && b) && d|| !c");
 		do {
 			b = false;
 			do {
 				c = false;
 				do {
-					System.out.println(a + "\t" + b + "\t" + c + "\t" + ((a && b) && a  || !c));
+					d = false;
+					System.out.println(a + "\t" + b + "\t" + c + "\t" + d + "\t" + ((a && b) && d || !c));
 					c = !c;
+					while (d)
+						;
+					d = !d;
 				} while (c);
 				// System.out.println(a + "\t" + b + "\t" + (a && b));
 				b = !b;
 			} while (b);
 			a = !a;
 		} while (a);
-	}
 
-	public static void paraenthesis() {
-
-	}
-
-	public static void negate() {
-
-	}
-
-	public static void and() {
-
-	}
-
-	public static void or() {
-
-	}
-
-	public static void operations() {
-		paraenthesis();
-		negate();
-		and();
-		or();
 	}
 
 	public static void valid() {
