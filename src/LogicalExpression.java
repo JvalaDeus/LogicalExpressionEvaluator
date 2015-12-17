@@ -149,13 +149,20 @@ public class logicalExpression {
 
 	public static void entails() {
 		int i;
+		int entailReturn = 0;
 		for (i = 0; i < numCombinations; i++) {
 			if (firstExpVals[i] == true && secondExpVals[i] == false) {
-				System.out.println("The first expression does not entail the second expression");
+				entailReturn = 0;
 				break;
 			} else {
-				System.out.println("The first expression entails the second expression");
+				entailReturn = 1;
 			}
+		}
+		if (entailReturn == 0){
+			System.out.println("The first expression does not entail the second expression");
+		}
+		else{
+			System.out.println("The first expression entails the second expression");
 		}
 	}
 }
