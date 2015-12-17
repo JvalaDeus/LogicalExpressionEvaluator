@@ -1,6 +1,3 @@
-import java.io.IOException;
-import java.util.Arrays;
-
 public class logicalExpression {
 	static int returnValue = 0;
 	static int numVariables = 4;
@@ -8,7 +5,7 @@ public class logicalExpression {
 	static boolean[] firstExpVals = new boolean[numCombinations];
 	static boolean[] secondExpVals = new boolean[numCombinations];
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args) {
 		logicalExpression expression = new logicalExpression();
 	}
 
@@ -151,6 +148,14 @@ public class logicalExpression {
 	}
 
 	public static void entails() {
-
+		int i;
+		for (i = 0; i < numCombinations; i++) {
+			if (firstExpVals[i] == true && secondExpVals[i] == false) {
+				System.out.println("The first expression does not entail the second expression");
+				break;
+			} else {
+				System.out.println("The first expression entails the second expression");
+			}
+		}
 	}
 }
