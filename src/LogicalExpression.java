@@ -9,11 +9,10 @@ public class logicalExpression {
 
 	public static void main(String[] args) throws IOException {
 		logicalExpression expression = new logicalExpression();
-		variableValues values = new variableValues(null, false);
-		countVariables();
 	}
 
 	public logicalExpression() {
+		countVariables();
 		operations();
 		valid();
 		contingent();
@@ -40,14 +39,14 @@ public class logicalExpression {
 				continue;
 			default:
 				if (numVariables == 0) {
-					value[numVariables] = expChar;
+					varArray[numVariables] = expChar;
 					numVariables++;
 				} else {
 					for (int j = 0; j < numVariables; j++) {
 						if (expChar.equals(varArray[j])) {
 							break;
 						} else {
-							value[numVariables] = expChar;
+							varArray[numVariables] = expChar;
 							numVariables++;
 						}
 					}
@@ -58,7 +57,22 @@ public class logicalExpression {
 	}
 
 	public static void truthTable() {
-
+		boolean a, b, c;
+		a = false;
+		System.out.println("a\tb\tc\t(a && b) && a|| !c");
+		do {
+			b = false;
+			do {
+				c = false;
+				do {
+					System.out.println(a + "\t" + b + "\t" + c + "\t" + ((a && b) && a  || !c));
+					c = !c;
+				} while (c);
+				// System.out.println(a + "\t" + b + "\t" + (a && b));
+				b = !b;
+			} while (b);
+			a = !a;
+		} while (a);
 	}
 
 	public static void paraenthesis() {
