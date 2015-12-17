@@ -2,26 +2,47 @@ import java.io.IOException;
 import java.util.Arrays;
 
 public class logicalExpression {
-	static boolean result = false;
 	static int returnValue = 0;
+	static int numVariables = 4;
+	static int numCombinations = (int) Math.pow(2, numVariables);
+	static boolean[] firstExpVals = new boolean[numCombinations];
+	static boolean[] secondExpVals = new boolean[numCombinations];
 
 	public static void main(String[] args) throws IOException {
 		logicalExpression expression = new logicalExpression();
 	}
 
 	public logicalExpression() {
-		returnValue = truthTable();
+		System.out.println("Below is the first expression's truth table");
+		returnValue = firstTruthTable();
+		System.out.println("");
+		System.out.println("");
+		System.out.println("Is the first expression valid, contingent, and/or satisfiable?");
 		valid();
 		contingent();
 		satisfiable();
+		System.out.println("");
+		System.out.println("");
+		System.out.println("Below is the second expression's truth table");
+		secondTruthTable();
+		System.out.println("");
+		System.out.println("");
+		System.out.println("Are the two expression equivalent?");
+		equivalent();
+		System.out.println("");
+		System.out.println("");
+		System.out.println("Does the first expression entail the second?");
+		entails();
 	}
 
-	public static int truthTable() {
+	public static int firstTruthTable() {
 		boolean a, b, c, d;
+		boolean result = false;
 		a = false;
 		int trueCount = 0;
 		int falseCount = 0;
 		int returnValue = 0;
+		int index = 0;
 		System.out.println("a\tb\tc\td\t(a && b) && d|| !c");
 		do {
 			b = false;
@@ -29,19 +50,20 @@ public class logicalExpression {
 				c = false;
 				do {
 					d = false;
-					System.out.println(a + "\t" + b + "\t" + c + "\t" + d + "\t" + ((a && b) && d || !c));
-					result = ((a && b) && d || !c);
-					if (result == true) {
-						trueCount++;
-					} else {
-						falseCount++;
-					}
+					do {
+						System.out.println(a + "\t" + b + "\t" + c + "\t" + d + "\t" + ((a && b) && d || !c));
+						result = ((a && b) && d || !c);
+						firstExpVals[index] = result;
+						index++;
+						if (result == true) {
+							trueCount++;
+						} else {
+							falseCount++;
+						}
+						d = !d;
+					} while (d);
 					c = !c;
-					while (d)
-						;
-					d = !d;
 				} while (c);
-				// System.out.println(a + "\t" + b + "\t" + (a && b));
 				b = !b;
 			} while (b);
 			a = !a;
@@ -57,45 +79,31 @@ public class logicalExpression {
 		return returnValue;
 	}
 
-	public static int secondTruthTable() {
+	public static void secondTruthTable() {
+		boolean result = false;
 		boolean a, b, c, d;
+		int index = 0;
 		a = false;
-		int trueCount = 0;
-		int falseCount = 0;
-		int returnValue = 0;
-		System.out.println("a\tb\tc\td\t(a && b) && d|| !c");
+		System.out.println("a\tb\tc\td\t(a || ~b) && d && c");
 		do {
 			b = false;
 			do {
 				c = false;
 				do {
 					d = false;
-					System.out.println(a + "\t" + b + "\t" + c + "\t" + d + "\t" + ((a && b) && d || !c));
-					result = ((a && b) && d || !c);
-					if (result == true) {
-						trueCount++;
-					} else {
-						falseCount++;
-					}
+					do {
+						System.out.println(a + "\t" + b + "\t" + c + "\t" + d + "\t" + ((a || !b) && d && c));
+						result = ((a || !b) && d && c);
+						secondExpVals[index] = result;
+						index++;
+						d = !d;
+					} while (d);
 					c = !c;
-					while (d)
-						;
-					d = !d;
 				} while (c);
-				// System.out.println(a + "\t" + b + "\t" + (a && b));
 				b = !b;
 			} while (b);
 			a = !a;
 		} while (a);
-
-		if (trueCount == 0) {
-			returnValue = -1;
-		} else if (falseCount == 0) {
-			returnValue = 1;
-		} else {
-			returnValue = 0;
-		}
-		return returnValue;
 	}
 
 	public static void valid() {
@@ -122,8 +130,24 @@ public class logicalExpression {
 		}
 	}
 
-	public static void equivalent() {
+	public static int equivalent() {
+		int i;
+		int equivReturn = 0;
+		for (i = 0; i < numCombinations; i++) {
+			if (firstExpVals[i] == secondExpVals[i]) {
+				equivReturn = 1;
+			} else {
+				equivReturn = 0;
+				break;
+			}
 
+		}
+		if (equivReturn == 1) {
+			System.out.println("The two expressions are equivalent");
+		} else {
+			System.out.println("The two expressions are not equivalent");
+		}
+		return equivReturn;
 	}
 
 	public static void entails() {
